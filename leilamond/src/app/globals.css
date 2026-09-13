@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* رنگ‌بندی اصلی: سفید + Burgundy/Wine — قابل تغییر از پنل ادمین در آینده */
+  --color-primary: #6d1b32;      /* Burgundy / Wine — رنگ اصلی برند */
+  --color-primary-light: #8c3a52;
+  --color-primary-dark: #4a1121;
+  --color-secondary: #c9a24b;    /* طلایی ملایم برای لمس لوکس */
+  --color-accent: #6d1b32;
+
+  --color-background: #ffffff;
+  --color-surface: #faf7f5;      /* شیری خیلی روشن */
+  --color-muted: #f2ecec;
+  --color-border: #e7dede;
+
+  --color-text: #1a1414;         /* مشکی برای متن */
+  --color-text-muted: #6b5f5f;
+
+  --color-success: #2f7d5b;
+  --color-warning: #b8860b;
+  --color-error: #b3261e;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(26, 20, 20, 0.06);
+  --shadow-md: 0 4px 12px rgba(26, 20, 20, 0.08);
+  --shadow-lg: 0 12px 32px rgba(26, 20, 20, 0.12);
+
+  --font-sans: "Vazirmatn", "IRANSans", system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+}
+
+html {
+  direction: rtl;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
