@@ -17,21 +17,43 @@ jobs:
       - name: Install unzip
         run: sudo apt-get update && sudo apt-get install -y unzip
 
-      - name: Extract zip and push to branch
+      - name: Debug: show repo root before
+        run: |
+          echo "=== pwd ==="
+          pwd
+          echo "=== ls -la ==="
+          ls -la
+          echo "=== show zip info if present ==="
+          if [ -f "leilamond-phase4.zip" ]; then
+            unzip -l leilamond-phase4.zip | head -n 40
+          else
+            echo "leilamond-phase4.zip NOT FOUND"
+          fi
+
+      - name: Extract zip and push to branch (verbose)
         env:
           BRANCH: unzip/leilamond-phase4-${{ github.run_id }}
         run: |
+          set -euxo pipefail
           if [ ! -f "leilamond-phase4.zip" ]; then
             echo "leilamond-phase4.zip not found in repo root"
             exit 1
           fi
+          echo "Extracting..."
           unzip -o leilamond-phase4.zip -d .
+          echo "After unzip: ls -la leilamond"
+          ls -la leilamond || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add leilamond || true
+          echo "Git status before add:"
+          git status --porcelain
+          git add -A leilamond || true
+          echo "Git status after add:"
+          git status --porcelain
           if git diff --cached --quiet; then
             echo "No changes to commit"
+            git status --porcelain
           else
             git commit -m "Extract leilamond-phase4.zip"
             git push --set-upstream origin "$BRANCH"
